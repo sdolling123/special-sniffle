@@ -1,0 +1,23 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { frontmatter } = Astro.props;
+---
+<head>
+    <meta charset="utf-8" />
+  </head>
+  <BaseLayout pageTitle={frontmatter.title}>
+    <p>{frontmatter.pubDate.toString().slice(0,10)}</p>
+    <p><em>{frontmatter.description}</em></p>
+    <p class="created-by">Created by: <span>{frontmatter.author}</span></p>
+    <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
+    <slot />
+</BaseLayout>
+
+<style>
+    .created-by {
+        font-weight: 600;
+    }
+    .created-by span {
+        font-weight: 500;
+    }
+</style>
